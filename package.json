@@ -17,6 +17,21 @@
         "command": "notebook-selection-test.get-current-selection",
         "title": "Get Current Selection",
         "category": "Notebook-Test"
+      },
+      {
+        "command": "notebook-selection-test.executeFoldingRangeProvider",
+        "title": "executeFoldingRangeProvider",
+        "category": "Notebook-Test"
+      },
+      {
+        "command": "notebook-selection-test.executeCodeActionProvider",
+        "title": "executeCodeActionProvider",
+        "category": "Notebook-Test"
+      },
+      {
+        "command": "notebook-selection-test.executeWorkspaceSymbolProvider",
+        "title": "executeWorkspaceSymbolProvider",
+        "category": "Notebook-Test"
       }
     ]
   },
