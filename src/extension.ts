@@ -6,6 +6,10 @@ import * as vscode from 'vscode';
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
 
+	const outputChannel = vscode.window.createOutputChannel('Notebook Selection Test');
+	outputChannel.appendLine(`active text editor ${vscode.window.activeTextEditor?.document.uri}`);
+	outputChannel.appendLine(`active notebook editor ${vscode.window.activeNotebookEditor?.notebook.uri}`);
+
 
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
@@ -19,6 +23,21 @@ export function activate(context: vscode.ExtensionContext) {
 			vscode.window.showInformationMessage('No active notebook editor');
 		}
 	}),
+
+	vscode.window.onDidChangeActiveTextEditor((editor) => {
+		outputChannel.appendLine(`onDidChangeActiveTextEditor: ${editor?.document.uri}`);
+		outputChannel.appendLine(`active text editor ${vscode.window.activeTextEditor?.document.uri}`);
+		outputChannel.appendLine(`active notebook editor ${vscode.window.activeNotebookEditor?.notebook.uri}`);
+		outputChannel.appendLine(``);
+	}),
+
+	vscode.window.onDidChangeActiveNotebookEditor((editor) => {
+		outputChannel.appendLine(`onDidChangeActiveNotebookEditor: ${editor?.notebook.uri}`);
+		outputChannel.appendLine(`active text editor ${vscode.window.activeTextEditor?.document.uri}`);
+		outputChannel.appendLine(`active notebook editor ${vscode.window.activeNotebookEditor?.notebook.uri}`);
+		outputChannel.appendLine(``);
+	}),
+
 	vscode.commands.registerCommand('notebook-selection-test.executeFoldingRangeProvider', async () => {
 		const res = await vscode.commands.executeCommand('vscode.executeFoldingRangeProvider', vscode.window.activeTextEditor?.document.uri);
 		vscode.window.showInformationMessage(`Folding ranges: ${JSON.stringify(res)}`);
@@ -30,7 +49,8 @@ export function activate(context: vscode.ExtensionContext) {
 	vscode.commands.registerCommand('notebook-selection-test.executeWorkspaceSymbolProvider', async () => {
 		const res = await vscode.commands.executeCommand('vscode.executeWorkspaceSymbolProvider', 'test');
 		vscode.window.showInformationMessage(`Workspace Symbols: ${JSON.stringify(res)}`);
-	}));
+	})
+	);
 
 }
 
