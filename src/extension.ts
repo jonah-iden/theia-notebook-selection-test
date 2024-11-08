@@ -18,7 +18,9 @@ export function activate(context: vscode.ExtensionContext) {
 	vscode.commands.registerCommand('notebook-selection-test.get-current-selection', () => {
 		if(vscode.window.activeNotebookEditor) {
 			const notebookEditor = vscode.window.activeNotebookEditor;
-			vscode.window.showInformationMessage(`current notebook: ${notebookEditor.notebook.uri.toString()} with selection ${notebookEditor.selection?.start}`);
+			vscode.window.showInformationMessage(`current notebook: ${notebookEditor.notebook.uri.toString()} with selection 
+			notebook cell: ${notebookEditor.selection?.start}\n
+			inside cell: ${JSON.stringify(vscode.window.activeTextEditor?.selection.start)}-${JSON.stringify(vscode.window.activeTextEditor?.selection.end)}\n`);
 		} else {
 			vscode.window.showInformationMessage('No active notebook editor');
 		}
