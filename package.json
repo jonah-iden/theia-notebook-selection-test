@@ -21,6 +21,11 @@
         "category": "Notebook-Test"
       },
       {
+        "command": "notebook-selection-test.get-actvive-editor",
+        "title": "Get Active Text Editor",
+        "category": "Notebook-Test"
+      },
+      {
         "command": "notebook-selection-test.executeFoldingRangeProvider",
         "title": "executeFoldingRangeProvider",
         "category": "Notebook-Test"
